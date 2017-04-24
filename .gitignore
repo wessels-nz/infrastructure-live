@@ -1,0 +1,10 @@
+### Webstorm IDE
+.idea
+
+### Terraform template
+# Compiled files
+*.tfstate
+*.tfstate.backup
+
+# Module directory
+.terraform/
