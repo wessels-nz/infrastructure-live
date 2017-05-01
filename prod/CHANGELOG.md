@@ -1,9 +1,7 @@
 # wessels.nz infrastructure live
 
-## 0.0.1
+## `wessels.com` production environment
 
-- Initialized repo.
-
-## 0.0.2
+### 0.0.1
 
 - Added `prod/wessels.com` environment.
