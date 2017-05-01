@@ -91,15 +91,6 @@ resource "aws_api_gateway_account" "platform_api" {
 }
 
 /**
- * REST API Deployment for the Platform.
- */
-resource "aws_api_gateway_deployment" "platform_api" {
-  rest_api_id = "${module.platform_api.rest_api_id}"
-  stage_name = "prod"
-  depends_on = ["module.platform_api_website", "module.platform_api_graphql"]
-}
-
-/**
  * Modules
  * -------------------------------------------------------------------------------------------------------------------
  */
@@ -121,6 +112,8 @@ module "platform_domain" {
  */
 module "platform_api" {
   source = "git::git@github.com:wessels-nz/infrastructure-modules.git//platform-api"
+  stage_name = "${var.platform_api_state_name}"
+  stage_description = "${null_resource.platform_api_deployment.triggers.stage_description}"
 }
 
 /**
@@ -154,4 +147,19 @@ module "platform_api_graphql" {
   rest_api_parent_resource_id = "${module.platform_api.rest_api_root_resource_id}"
   create_child_resource = true
   child_resource_path = "graphql"
+}
+
+/**
+ * Dependency Helpers
+ * -------------------------------------------------------------------------------------------------------------------
+ */
+
+/**
+ * Dependency Helper to ensure that the API Deployment happens after all API Resources have been created.
+ */
+resource "null_resource" "platform_api_deployment" {
+  triggers {
+    stage_description = "${var.platform_api_state_description}"
+  }
+  depends_on = ["module.platform_api_website", "module.platform_api_graphql"]
 }

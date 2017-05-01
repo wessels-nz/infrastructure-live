@@ -36,3 +36,16 @@ variable "email_mx_records" {
   description = "The values of the MX record used to point to the email provider."
   default = []
 }
+
+/**
+ * Platform API
+ * -------------------------------------------------------------------------------------------------------------------
+ */
+variable "platform_api_state_name" {
+  type = "string"
+  description = "The Stage Name for the Platform API Deployment."
+}
+variable "platform_api_state_description" {
+  type = "string"
+  description = "The Stage Description for the Platform API Deployment."
+}
