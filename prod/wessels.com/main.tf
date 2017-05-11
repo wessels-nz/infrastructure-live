@@ -126,7 +126,7 @@ module "platform_api_website" {
   function_name = "platform-api-website"
   role_arn = "${aws_iam_role.platform_api_website_lambda.arn}"
   handler = "index.handler"
-  runtime = "nodejs4.3"
+  runtime = "nodejs6.10"
   rest_api_id = "${module.platform_api.rest_api_id}"
   rest_api_parent_resource_id = "${module.platform_api.rest_api_root_resource_id}"
   create_child_resource = false
@@ -142,7 +142,7 @@ module "platform_api_graphql" {
   function_name = "platform-api-graphql"
   role_arn = "${aws_iam_role.platform_api_graphql_lambda.arn}"
   handler = "index.handler"
-  runtime = "nodejs4.3"
+  runtime = "nodejs6.10"
   rest_api_id = "${module.platform_api.rest_api_id}"
   rest_api_parent_resource_id = "${module.platform_api.rest_api_root_resource_id}"
   create_child_resource = true
