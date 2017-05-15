@@ -37,6 +37,11 @@ variable "email_mx_records" {
   default = []
 }
 
+variable "platform_domain_certificate_arn" {
+  type = "string"
+  description = "The ARN of the ACM certificate to be used for the platform website distribution."
+}
+
 /**
  * Platform API
  * -------------------------------------------------------------------------------------------------------------------
